@@ -706,16 +706,18 @@ export function Settings() {
               checkingUpdate
                 ? Locale.Settings.Update.IsChecking
                 : hasNewVersion
-                ? Locale.Settings.Update.FoundUpdate(remoteId ?? "ERROR")
+                ? Locale.Settings.Update.IsLatest
                 : Locale.Settings.Update.IsLatest
             }
           >
             {checkingUpdate ? (
               <LoadingIcon />
             ) : hasNewVersion ? (
-              <Link href={updateUrl} target="_blank" className="link">
-                {Locale.Settings.Update.GoToUpdate}
-              </Link>
+              <IconButton
+                icon={<ResetIcon></ResetIcon>}
+                text={Locale.Settings.Update.CheckUpdate}
+                onClick={() => checkUpdate(true)}
+              />
             ) : (
               <IconButton
                 icon={<ResetIcon></ResetIcon>}
